@@ -8,6 +8,11 @@
 </head>
 <body>
     <div class="bg-zinc-900 w-full min-h-screen text-white p-5 md:p-10 relative">
+
+        <div class="flex flex-col items-center pb-5">
+            <h1 class="lg:text-5xl text-2xl text-yellow-500 font-bold border-b-2 border-yellow-500 py-2">Notes <i>&</i> Ideas</h1>
+            <p class="text-xs lg:text-sm text-zinc-400 py-2">• Keep Your Thoughts Organized ||<i class="text-yellow-500 font-bold border-b border-yellow-500">Write, Reflect, Repeat</i>|| Your Note-Taking Hub •</p>
+        </div>
         <div id="snackbar" class="hidden absolute top-5 right-5 bg-red-500 lg:bg-opacity-50 text-white px-6 py-3 rounded-lg shadow-lg text-lg">
             Title and details are required!
         </div>
@@ -28,14 +33,15 @@
                         <p class="text-sm text-zinc-400 mt-2">
                             <%= formattedName.details.slice(0, 20) %><%= formattedName.details.length > 20 ? '...' : '' %>
                         </p>
-                        <div class="mt-5">
+                        <div class="mt-5 flex justify-between">
                             <a href="/file/<%= formattedName.fileNameCamelCase %>" class="text-yellow-500 inline-block">Read More</a>
-                        </div>
-                        <div class="mt-4 flex gap-3">
-                            <!-- Delete button -->
                             <form action="/delete/<%= formattedName.fileNameCamelCase %>" method="post">
                                 <button type="submit" class="text-red-500">Delete</button>
                             </form>
+                        </div>
+                        <div class="mt-4 flex gap-3">
+                            <!-- Delete button -->
+                           
                           
                         </div>
                     </div>

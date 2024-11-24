@@ -56,18 +56,26 @@ app.post("/create", function (req, res) {
     });
 });
 app.get("/file/:filename", function(req, res){
-    const filePath = `./files/${req.params.filename}`;
+    // Ensure .txt is not appended twice, only if it's missing
+    const filePath = `./files/${req.params.filename.endsWith('.txt') ? req.params.filename : req.params.filename + '.txt'}`;
+
     fs.readFile(filePath, 'utf-8', function(err, filedata){
         if (err) {
             console.error(err);
             return res.status(500).send("Error reading file");
         }
+
+        // Remove .txt extension for displaying the filename
+        const formattedFilename = req.params.filename.replace(".txt", "").replace(/([A-Z])/g, " $1").trim();
+
+        // Render the file content with the formatted filename
         res.render("show", { 
-            filename: req.params.filename.replace(".txt", "").replace(/([A-Z])/g, " $1").trim(), 
+            filename: formattedFilename, 
             filedata: filedata
         });
     });
 });
+
 
 app.post("/delete/:filename" , function(req, res){
     const filePath = `./files/${req.params.filename}`
