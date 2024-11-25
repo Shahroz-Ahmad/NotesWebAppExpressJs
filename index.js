@@ -87,6 +87,6 @@ app.post("/delete/:filename" , function(req, res){
             res.redirect("/?message=Note+deleted+successfully");        }
     })
 })
-app.listen(3000)
+app.listen(8000)
 
 module.exports = app;
